@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Real Cost of Our "Throwaway" AI Obsession</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16233A;
+    --bone:#F6F3EC;
+    --paper:#FBF9F4;
+    --amber:#E8A33D;
+    --teal:#1F5C57;
+    --rule:#D8D2C3;
+    --ink-soft:#4B5568;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bone);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    line-height:1.15;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+
+  /* HERO */
+  .hero{
+    background:var(--ink);
+    color:var(--bone);
+    padding:76px 0 64px;
+  }
+  .hero .byline{
+    font-size:14px;
+    letter-spacing:0.02em;
+    color:#B9C2D4;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(30px, 5vw, 46px);
+    color:var(--bone);
+    --max-width:15ch;
+  }
+  .hero .sub{
+    margin-top:22px;
+    font-size:18px;
+    color:#D7DCE7;
+    max-width:52ch;
+  }
+
+  .stat-strip{
+    display:flex;
+    gap:0;
+    margin-top:44px;
+    border-top:1px solid rgba(246,243,236,0.2);
+  }
+  .stat{
+    flex:1;
+    padding:22px 20px 4px 0;
+    border-right:1px solid rgba(246,243,236,0.15);
+  }
+  .stat:last-child{border-right:none; padding-right:0;}
+  .stat .num{
+    font-family:"Fraunces", serif;
+    font-size:clamp(22px,4vw,32px);
+    color:var(--amber);
+    display:block;
+  }
+  .stat .label{
+    font-size:13px;
+    color:#B9C2D4;
+    margin-top:4px;
+  }
+
+  /* BODY */
+  main{padding:56px 0 20px;}
+  .lede{
+    font-size:19px;
+    color:var(--ink-soft);
+    max-width:56ch;
+  }
+  .lede strong{color:var(--ink);}
+
+  section.problem{
+    margin-top:56px;
+    padding-top:40px;
+    border-top:1px solid var(--rule);
+  }
+  section.problem .kicker{
+    font-size:14px;
+    color:var(--teal);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  section.problem h2{
+    font-size:26px;
+    --max-width:22ch;
+    margin-bottom:16px;
+  }
+  section.problem p{
+    color:var(--ink-soft);
+    max-width:62ch;
+  }
+  ul.points{
+    list-style:none;
+    padding:0;
+    margin:22px 0 0;
+  }
+  ul.points li{
+    padding:14px 0;
+    border-top:1px solid var(--rule);
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:14px;
+    align-items:baseline;
+  }
+  ul.points li:last-child{border-bottom:1px solid var(--rule);}
+  ul.points li .tag{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  ul.points li p{margin:0;color:var(--ink-soft);}
+
+  /* PULL QUOTE / TURN */
+  .turn{
+    margin:64px 0;
+    padding:40px 32px;
+    background:var(--teal);
+    color:var(--bone);
+    border-radius:2px;
+  }
+  .turn h2{
+    color:var(--bone);
+    font-size:26px;
+    --max-width:20ch;
+  }
+  .turn p{color:#D7E5E2; max-width:58ch; margin-top:14px;}
+  .use-grid{
+    margin-top:26px;
+    display:grid;
+    gap:18px;
+  }
+  .use-grid .item{
+    border-left:2px solid var(--amber);
+    padding-left:16px;
+  }
+  .use-grid .item .who{
+    font-weight:600;
+    font-family:"Fraunces", serif;
+    font-size:16px;
+  }
+  .use-grid .item p{color:#D7E5E2; margin:4px 0 0; font-size:15px;}
+
+  /* HABITS */
+  .habits h2{font-size:26px; --max-width:20ch;
+  }
+  .habit-list{margin-top:26px;}
+  .habit{
+    padding:22px 0;
+    border-top:1px solid var(--rule);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+  .habit:last-child{border-bottom:1px solid var(--rule);}
+  .habit .name{
+    font-family:"Fraunces", serif;
+    font-size:18px;
+    font-weight:600;
+  }
+  .habit p{margin:0;color:var(--ink-soft); max-width:60ch;}
+
+  .bottom-line{
+    margin-top:56px;
+    padding-top:32px;
+    border-top:1px solid var(--rule);
+  }
+  .bottom-line h2{font-size:22px;}
+  .bottom-line p{color:var(--ink-soft); max-width:58ch; margin-top:12px; font-size:18px;}
+
+  /* CHECKLIST */
+  .checklist-wrap{
+    background:var(--ink);
+    padding:60px 0 70px;
+    margin-top:64px;
+  }
+  .checklist{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:3px;
+    padding:36px 32px 32px;
+  }
+  .checklist .cl-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:14px;
+    margin-bottom:6px;
+  }
+  .checklist .cl-head h2{
+    font-size:22px;
+  }
+  .checklist .cl-head .note{
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .cl-item{
+    display:flex;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--rule);
+    align-items:flex-start;
+  }
+  .cl-item:last-child{border-bottom:none;}
+  .cl-box{
+    width:18px;
+    height:18px;
+    border:2px solid var(--ink);
+    border-radius:2px;
+    flex-shrink:0;
+    margin-top:3px;
+  }
+  .cl-item p{margin:0; font-size:15.5px;}
+  .cl-item strong{font-family:"Fraunces", serif; font-weight:600;}
+
+  footer{
+    text-align:center;
+    padding:36px 0 48px;
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+
+  @media (max-width:560px){
+    .stat-strip{flex-direction:column;}
+    .stat{border-right:none; border-bottom:1px solid rgba(246,243,236,0.15); padding:16px 0;}
+    .stat:last-child{border-bottom:none;}
+    ul.points li{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="byline">By a fellow concerned human being</div>
+    <h1>The real cost of our "throwaway" AI obsession</h1>
+    <p class="sub">And how to be smarter about it — without deleting a single app.</p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <span class="num">1 charge</span>
+        <span class="label">electricity used per AI image generated</span>
+      </div>
+      <div class="stat">
+        <span class="num">10×</span>
+        <span class="label">more power than a standard search, per chat</span>
+      </div>
+      <div class="stat">
+        <span class="num">millions of gal.</span>
+        <span class="label">of water cooling data centers, daily</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <p class="lede">That viral photo of you with 1980s hair and a neon mall background looked awesome on your feed. A few scrolls later: an AI rap about a coworker's pet, an astronaut riding a unicycle on Mars, a chatbot roasting someone's personality. <strong>We are living in the era of throwaway AI</strong> and every one of those two-second laughs has a bill attached that nobody's showing you.</p>
+
+  <section class="problem">
+    <div class="kicker">Privacy</div>
+    <h2>You are trading your digital DNA for a meme</h2>
+    <p>When an app transforms your face, mimics your voice, or writes a funny script for free, you aren't the customer, you are the product.</p>
+    <ul class="points">
+      <li><span class="tag">Your face, kept</span><p>Uploading selfies hands your unique facial geometry directly to corporate servers.</p></li>
+      <li><span class="tag">The training loop</span><p>By default, your files, jokes, and prompts train the next model. Your identity becomes free data for commercial products.</p></li>
+      <li><span class="tag">Invisible breadcrumbs</span><p>Raw camera photos carry hidden EXIF metadata — upload one blindly and you may hand over your exact GPS coordinates, phone model, and timestamp.</p></li>
+    </ul>
+  </section>
+
+  <section class="problem">
+    <div class="kicker">Environment</div>
+    <h2>The planet-sized cost of a 2-second joke</h2>
+    <p>We talk about "the cloud" like it's weightless. It isn't, it runs on massive, physical data centers straining the grid.</p>
+    <ul class="points">
+      <li><span class="tag">Energy hogs</span><p>One AI image takes about as much electricity as fully charging a smartphone. One chatbot conversation burns roughly 10× the power of a standard search.</p></li>
+      <li><span class="tag">Water guzzlers</span><p>Server warehouses need millions of gallons of fresh water a day just to keep the machines from overheating.</p></li>
+    </ul>
+    <p style="margin-top:18px;">Using that same grid-crushing power to map climate change or discover new medicines? Worth it. Spending it on a five-second clip of a dancing cat? A waste of finite resources.</p>
+  </section>
+
+  <section class="problem">
+    <div class="kicker">Culture</div>
+    <h2>How throwaway AI is ruining internet culture</h2>
+    <p>When millions of people generate content just to discard it, the pollution piles up for everyone.</p>
+    <ul class="points">
+      <li><span class="tag">Clogging search</span><p>Finding a real photo, a genuine recipe, or an authentic drawing is now an obstacle course of lookalike AI images and bot-written articles.</p></li>
+      <li><span class="tag">Effort, devalued</span><p>When a machine spits out a polished drawing or a full song in seconds, we lose patience for human skill, trading raw expression for generic polish.</p></li>
+      <li><span class="tag">Brain-rot boredom</span><p>AI can only remix what already exists, so feeds turn repetitive fast — funny meme today, predictable noise tomorrow.</p></li>
+    </ul>
+  </section>
+
+  <div class="turn">
+    <h2>Flipping the script: using AI with intention</h2>
+    <p>Being smart about AI doesn't mean quitting the internet. It means treating it like a high-voltage power tool, not a plastic toy.</p>
+    <div class="use-grid">
+      <div class="item">
+        <div class="who">The lifelong learner</div>
+        <p>Break down complex topics, brainstorm outlines, or use it as a coding tutor when you're stuck.</p>
+      </div>
+      <div class="item">
+        <div class="who">The professional</div>
+        <p>Hand off the tedious groundwork: formatting spreadsheets, summarizing transcripts, drafting templates - so you can focus on the thinking that matters.</p>
+      </div>
+      <div class="item">
+        <div class="who">The everyday user</div>
+        <p>Cross-reference facts, learn a language, or test your logic before building something real.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="habits">
+    <h2>How to stay safe (without deleting your apps)</h2>
+    <div class="habit-list">
+      <div class="habit">
+        <div class="name">Flip the privacy switch</div>
+        <p>In your AI app's settings, find Data Controls and turn off "improve the model for everyone" or "use data for training." Stop giving away your data for free.</p>
+      </div>
+      <div class="habit">
+        <div class="name">Sanitize your uploads</div>
+        <p>Before uploading a personal photo, screenshot it first and upload the screenshot instead. It strips the hidden location metadata.</p>
+      </div>
+      <div class="habit">
+        <div class="name">Pause before you prompt</div>
+        <p>Ask yourself: is this actually useful, or just digital landfill? Keep your feeds and chats human by leading with your own wit.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="bottom-line">
+    <h2>The bottom line</h2>
+    <p>AI is a powerful utility, not a thoughtless toy. Next time a silly trend takes over your feed, don't blindly feed it your data and the planet's power. Pause, protect your privacy, and use the tech mindfully.</p>
+  </div>
+
+</main>
+
+<div class="checklist-wrap">
+  <div class="wrap">
+    <div class="checklist">
+      <div class="cl-head">
+        <h2>The quick AI safety checklist</h2>
+        <span class="note">Save it, print it, share it</span>
+      </div>
+      <div class="cl-item"><div class="cl-box"></div><p><strong>Flip the privacy switch.</strong> Turn off data training in your AI app settings.</p></div>
+      <div class="cl-item"><div class="cl-box"></div><p><strong>Screenshot your photos.</strong> Upload screenshots instead of raw camera files to hide your GPS location.</p></div>
+      <div class="cl-item"><div class="cl-box"></div><p><strong>Ask before sharing someone else.</strong> Never upload a friend's or coworker's face or voice without asking first.</p></div>
+      <div class="cl-item"><div class="cl-box"></div><p><strong>Remember the "one-charge" rule.</strong> Every image you generate costs about a full phone battery's worth of power.</p></div>
+      <div class="cl-item"><div class="cl-box"></div><p><strong>Can you make it yourself?</strong> Use your own brain for jokes, captions, and messages. Human wit beats a sterile algorithm.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer>Mindful AI usage &middot; share freely</footer>
+
+</body>
+</html>
