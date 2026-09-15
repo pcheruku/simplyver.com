@@ -3,64 +3,478 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simplyver Home</title>
-
+<title>Simplyver — Simple solutions for complex problems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #f4f6f9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
 
-    .card {
-        background: white;
-        padding: 30px;
-        max-width: 400px;
-        border-radius: 16px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        text-align: center;
-    }
+  :root{
+    --paper: #F1F2ED;
+    --sand: #E7E2D5;
+    --ink: #1E2019;
+    --ink-soft: #4A4D44;
+    --problem: #6B6F63;
+    --problem-line: #C9CCBE;
+    --teal: #1F6F5C;
+    --teal-soft: #E4EEEA;
+    --rule: #D9DAD1;
+    --max-w: 720px;
+  }
 
-    .card h2 {
-        color: #0078D4;
-        margin-bottom: 10px;
-    }
+  *{ box-sizing:border-box; }
 
-    .card p {
-        color: #555;
-        line-height: 1.6;
-    }
+  html{ scroll-behavior:smooth; }
 
-    .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background: #0078D4;
-        color: white;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: background 0.2s ease;
-    }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    .btn:hover {
-        background: #106ebe;
+  a{ color:var(teal); background-color: #f0f0f0;}
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:3px; }
+
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    line-height:1.15;
+    margin:0;
+    color:var(--ink);
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    background:var(--sand);
+    padding:1.5rem 1.5rem 1.5rem;
+    border-bottom:1px solid var(--rule);
+  }
+
+  .hero-inner{
+    max-width:var(--max-w);
+    margin:0 auto;
+  }
+
+  .wordmark{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.05rem;
+    letter-spacing:0.01em;
+    margin-bottom:3rem;
+  }
+
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.1rem);
+    max-width:14ch;
+  }
+
+  .hero p{
+    max-width:46ch;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    margin-top:1.4rem;
+  }
+
+  .knot{
+    margin-top:2.8rem;
+    width:220px;
+    max-width:60%;
+    height:auto;
+    display:block;
+  }
+  .knot path{
+    fill:none;
+    stroke:var(--ink);
+    stroke-width:2;
+    stroke-linecap:round;
+  }
+  .knot .solved{ stroke:var(--teal); }
+
+  @media (prefers-reduced-motion: no-preference){
+    .knot .tangled{
+      stroke-dasharray:340;
+      stroke-dashoffset:340;
+      animation: draw 1.4s ease forwards;
     }
+    .knot .solved{
+      stroke-dasharray:140;
+      stroke-dashoffset:140;
+      animation: draw 0.8s ease forwards 1.2s;
+    }
+    @keyframes draw{ to{ stroke-dashoffset:0; } }
+  }
+
+  /* ---------- Nav ---------- */
+
+  .toc{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:2.5rem 1.5rem 1rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem 1.4rem;
+  }
+  .toc a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:0.92rem;
+    border-bottom:1px solid transparent;
+  }
+  .toc a:hover{ border-bottom-color:var(--teal); color:var(--ink); }
+
+  /* ---------- Category sections ---------- */
+
+  main{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:1rem 1.5rem 2rem;
+  }
+
+  section.category{
+    padding-top:1.5rem;
+  }
+
+  section.category h2{
+    font-style:italic;
+    font-size:1.7rem;
+    padding-bottom:1.6rem;
+    border-bottom:1px solid var(--rule);
+  }
+
+  /* ---------- Entry ---------- */
+
+  .entry{
+    padding:2.1rem 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .entry:last-child{ border-bottom:none; }
+
+  .entry .problem{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--problem);
+    font-size:1.05rem;
+    padding-left:1rem;
+    border-left:2px solid var(--problem-line);
+    margin-bottom:1.1rem;
+  }
+
+  .entry .solution{
+    background:var(--teal-soft);
+    border-left:3px solid var(--teal);
+    padding:1rem 1.2rem;
+    border-radius:0 6px 6px 0;
+  }
+
+  .entry .solution .name{
+    display:block;
+    font-weight:600;
+    color:var(--teal);
+    margin-bottom:0.3rem;
+    font-size:0.98rem;
+  }
+
+  .entry .solution p{
+    margin:0;
+    color:var(--ink);
+  }
+
+  /* ---------- How to use ---------- */
+
+  .howto{
+    background:var(--sand);
+    margin-top:4rem;
+    padding:3.5rem 1.5rem;
+    border-top:1px solid var(--rule);
+  }
+
+  .howto-inner{ max-width:var(--max-w); margin:0 auto; }
+
+  .howto h2{ font-size:1.7rem; margin-bottom:0.4rem; }
+  .howto .sub{ color:var(--ink-soft); margin-bottom:2rem; }
+
+  .howto ol{
+    list-style:none;
+    margin:0; padding:0;
+    counter-reset:step;
+  }
+  .howto li{
+    counter-increment:step;
+    display:flex;
+    gap:1rem;
+    padding:1rem 0;
+    border-top:1px solid var(--rule);
+  }
+  .howto li::before{
+    content: counter(step);
+    font-family:'Fraunces', serif;
+    font-size:1rem;
+    color:var(--teal);
+    flex:0 0 1.6rem;
+  }
+
+  footer{
+    --max-width:var(--max-w);
+    --margin:0 auto;
+    padding:1.5rem 1.5rem 1.5rem;
+    color:var(--ink-soft);
+    font-size:0.9rem;
+	background:var(--sand);
+  }
+
+  @media (max-width:520px){
+    body{ font-size:16px; }
+    .hero{ padding:4rem 1.25rem 3rem; }
+  }
 </style>
 </head>
-
 <body>
-    <div class="card">
-        <h2>Welcome!</h2>
-        <p>
-            <center>WELCOME TO SIMPLYVER.COM</center>
-			<center>HOME OF SIMPLE SOLUTIONS FOR COMPLEX PROBLEMS</center>
-			<br
-        </p>
-        <a>#COMING SOON!!</a>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="wordmark">Simplyver</div>
+    <h1>Complex problems, simple solutions.</h1>
+    <p>A working collection of everyday frictions and the small, specific fixes that dissolve them — no overhauls required.</p>
+
+    <svg class="knot" viewBox="0 0 220 90" aria-hidden="true">
+      <path class="tangled" d="M6 45 C 30 10, 40 80, 62 45 C 78 18, 92 68, 104 45 C 112 30, 122 55, 112 45" />
+      <path class="solved" d="M118 45 L 214 45" />
+    </svg>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Categories">
+  <a href="#productivity">Productivity</a>
+  <a href="#money">Money</a>
+  <a href="#home">Home</a>
+  <a href="#relationships">Relationships</a>
+  <a href="#tech">Tech</a>
+  <a href="#health">Health</a>
+  <a href="#environment">Environment</a>
+  <a href="#learning">Learning</a>
+  <a href="/mindful-ai-usage.html">Mindful AI</a>
+</nav>
+
+<main>
+
+  <section class="category" id="productivity">
+    <h2>Productivity &amp; focus</h2>
+
+    <div class="entry">
+      <p class="problem">I have 30 tabs open and can't focus on anything.</p>
+      <div class="solution">
+        <span class="name">The One Tab Rule</span>
+        <p>Close everything except the tab for your current task. Need a reference later? Bookmark it instead of leaving it open.</p>
+      </div>
     </div>
+
+    <div class="entry">
+      <p class="problem">My to-do list has 40 items and I feel paralyzed.</p>
+      <div class="solution">
+        <span class="name">The Rule of 3</span>
+        <p>Every morning, pick only three tasks that matter today. Everything else waits its turn.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">I keep starting tasks but never finishing them.</p>
+      <div class="solution">
+        <span class="name">The 2-Minute Close</span>
+        <p>Before switching tasks, spend two minutes writing exactly where you left off. Future-you will thank present-you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="money">
+    <h2>Money &amp; finance</h2>
+
+    <div class="entry">
+      <p class="problem">Budgeting feels overwhelming and I give up after a week.</p>
+      <div class="solution">
+        <span class="name">The One Number Budget</span>
+        <p>Track just one number daily: money spent. No categories, no spreadsheets — awareness alone changes behavior.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">I never know if I can afford something.</p>
+      <div class="solution">
+        <span class="name">The 24-Hour Rule</span>
+        <p>For any non-essential purchase over a set amount, wait 24 hours. If you still want it, buy it.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">Saving money feels impossible with irregular income.</p>
+      <div class="solution">
+        <span class="name">Percentage-Based Saving</span>
+        <p>Save a fixed percentage of every payment you receive, not a fixed dollar amount. It scales automatically with you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="home">
+    <h2>Home &amp; life admin</h2>
+
+    <div class="entry">
+      <p class="problem">My house is cluttered and cleaning feels like a huge project.</p>
+      <div class="solution">
+        <span class="name">The 10-Minute Reset</span>
+        <p>Set a timer for ten minutes each evening and put things back where they belong. No deep cleaning required.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">I forget to do routine maintenance — filters, renewals, and the like.</p>
+      <div class="solution">
+        <span class="name">The Monthly Home Check</span>
+        <p>One recurring calendar reminder on the 1st of each month — a single prompt to review everything at once.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">Meal planning takes too much mental energy.</p>
+      <div class="solution">
+        <span class="name">The 5 Meal Rotation</span>
+        <p>Pick five meals you enjoy and rotate them weekly. Decision fatigue removed entirely.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="relationships">
+    <h2>Communication &amp; relationships</h2>
+
+    <div class="entry">
+      <p class="problem">Difficult conversations always spiral out of control.</p>
+      <div class="solution">
+        <span class="name">Name It First</span>
+        <p>Open with "I want to talk about this because I care about it working." Naming intent lowers defensiveness.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">I say yes to everything and end up overcommitted.</p>
+      <div class="solution">
+        <span class="name">The Default Delay</span>
+        <p>Default reply: "Let me check and get back to you." It removes the pressure to decide on the spot.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">Group plans never get finalized.</p>
+      <div class="solution">
+        <span class="name">One Proposal, Not a Poll</span>
+        <p>One person proposes a specific time and place. Everyone else only needs to say yes or no.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="tech">
+    <h2>Tech &amp; digital life</h2>
+
+    <div class="entry">
+      <p class="problem">I have too many passwords to remember safely.</p>
+      <div class="solution">
+        <span class="name">One Vault, One Master</span>
+        <p>A password manager plus one strong master password solves security and memory at the same time.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">My phone feels addictive and I lose hours to it.</p>
+      <div class="solution">
+        <span class="name">Grayscale Mode</span>
+        <p>Turn the screen to grayscale. Removing color removes a huge share of the dopamine pull.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">I get overwhelmed by notifications.</p>
+      <div class="solution">
+        <span class="name">Calls and Texts Only</span>
+        <p>Turn off every notification except calls and texts from real people. Check apps on your schedule, not theirs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="health">
+    <h2>Health &amp; wellbeing</h2>
+
+    <div class="entry">
+      <p class="problem">I know I should exercise but never "find the time."</p>
+      <div class="solution">
+        <span class="name">The 2-Minute Start</span>
+        <p>Commit only to putting on your shoes and stepping outside. Starting is the only hard part.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">I don't drink enough water during the day.</p>
+      <div class="solution">
+        <span class="name">The One Bottle Method</span>
+        <p>Fill one large bottle each morning — that's your entire day's goal, visible and trackable at a glance.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">Stress builds up and I don't notice until I'm overwhelmed.</p>
+      <div class="solution">
+        <span class="name">The Daily Number</span>
+        <p>A quick 1–10 stress check-in, same time every day. Naming the number early catches problems before they compound.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="environment">
+    <h2>Environment &amp; sustainability</h2>
+
+    <div class="entry">
+      <p class="problem">Living sustainably feels like it requires a total lifestyle overhaul.</p>
+      <div class="solution">
+        <span class="name">One Swap a Month</span>
+        <p>Reusable bags this month, a reusable bottle next. Small compounding changes beat one overwhelming one.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">Food waste keeps piling up.</p>
+      <div class="solution">
+        <span class="name">The Eat Me First Bin</span>
+        <p>A visible bin in the fridge reserved only for items nearing expiration.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="category" id="learning">
+    <h2>Learning &amp; growth</h2>
+
+    <div class="entry">
+      <p class="problem">I want to learn a new skill but never have a "big enough" block of time.</p>
+      <div class="solution">
+        <span class="name">The 15-Minute Rule</span>
+        <p>Commit to only fifteen minutes a day. Consistency beats intensity.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <p class="problem">I read and watch a lot but retain very little.</p>
+      <div class="solution">
+        <span class="name">The One Sentence Summary</span>
+        <p>After anything you learn, write one sentence on what it means for you.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <center>Simplyver — simple solutions for complex problems.</center>
+</footer>
+
 </body>
 </html>
